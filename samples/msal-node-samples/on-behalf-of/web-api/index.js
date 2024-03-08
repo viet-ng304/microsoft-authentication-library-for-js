@@ -29,7 +29,7 @@ const acquireTokenObo = (cca, webApiPort, clientId, authority, discoveryKeysEndp
         const authHeader = req.headers.authorization;
         if (authHeader) {
             const token = authHeader.split(" ")[1];
-            
+
             const validationOptions = {
                 audience: clientId, // v2.0 token
                 issuer: `${authority}/v2.0`, // v2.0 token
@@ -61,13 +61,14 @@ const acquireTokenObo = (cca, webApiPort, clientId, authority, discoveryKeysEndp
 
     app.get("/obo", validateJwt, (req, res) => {
         const authHeader = req.headers.authorization;
-
+        console.log('handing this', authHeader)
         const oboRequest = {
             oboAssertion: authHeader.split(" ")[1],
-            scopes: ["user.read"],
+            scopes: ["444271cd-9a9a-48cb-9095-ad62258c48db/user_impersonation"],
         };
 
         cca.acquireTokenOnBehalfOf(oboRequest).then((response) => {
+            console.log('handing thas')
             console.log(response);
             callGraph(response.accessToken, (graphResponse) => {
                 res.status(200).send(graphResponse);
@@ -79,18 +80,23 @@ const acquireTokenObo = (cca, webApiPort, clientId, authority, discoveryKeysEndp
 
     const callGraph = (accessToken, callback) => {
         const options = {
-            method: "GET",
+            method: "POST",
             headers: {
                 "Authorization": `Bearer ${accessToken}`,
             },
         };
 
-        const req = https.request(new URL("https://graph.microsoft.com/v1.0/me"), options, (res) => {
+
+        console.log('obo', accessToken)
+
+        const req = https.request(new URL("https://cahrhla9gi.execute-api.ap-southeast-2.amazonaws.com/dev/graphql"), options, (res) => {
             res.setEncoding("utf8");
+            console.log('response received*****', res.headers)
             res.on("data", (chunk) => {
                 callback(chunk);
             });
         });
+        req.write('query GPSHealthCheck{healthCheck {status}}');
         req.on("error", (err) => {
             console.log(err);
         });

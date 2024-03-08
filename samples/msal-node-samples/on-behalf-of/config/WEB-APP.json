@@ -1,8 +1,8 @@
 {
     "authOptions": {
-        "clientId": "<ENTER_CLIENT_ID>",
+        "clientId": "39dc51a3-152d-42d3-b0fb-3b2eb324af44",
         "authority": "https://login.microsoftonline.com/organizations",
-        "clientSecret": "<ENTER_CLIENT_SECRET>"
+        "clientSecret": ""
     },
     "serverPort": 3000,
     "redirectUri": "http://localhost:3000/redirect"

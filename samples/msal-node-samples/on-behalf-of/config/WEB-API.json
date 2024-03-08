@@ -1,10 +1,10 @@
 {
     "authOptions": {
-        "clientId": "<ENTER_CLIENT_ID>",
-        "authority": "https://login.microsoftonline.com/<ENTER_TENANT_ID>",
-        "clientSecret": "<ENTER_CLIENT_SECRET>"
+        "clientId": "39dc51a3-152d-42d3-b0fb-3b2eb324af44",
+        "authority": "https://login.microsoftonline.com/a3299bba-ade6-4965-b011-bada8d1d9558",
+        "clientSecret": ""
     },
     "serverPort": 8000,
-    "webApiScope": "<ENTER_WEB_API_SCOPE>",
-    "discoveryKeysEndpoint": "https://login.microsoftonline.com/<ENTER_TENANT_ID>/discovery/v2.0/keys"
+    "webApiScope": "api://39dc51a3-152d-42d3-b0fb-3b2eb324af44/.default",
+    "discoveryKeysEndpoint": "https://login.microsoftonline.com/a3299bba-ade6-4965-b011-bada8d1d9558/discovery/v2.0/keys"
 }
